@@ -36,7 +36,7 @@
 
         <div class="nav">
         <div class="nav1">
-            <span class="text3"><a href="accounts">Accounts</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="transfers">Transfers</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="">Check Manage</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="">Settings</a></span>
+            <span class="text3"><a href="accounts">Accounts</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="transfers">Transfers</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="checks">Checks</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href="">Settings</a></span>
         </div> <!-- class="nav1" -->
         </div> <!-- class="nav" -->
 

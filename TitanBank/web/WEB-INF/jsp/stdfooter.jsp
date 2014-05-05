@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+        <br><br><br>
         <div class="clear"></div>
 
         <div class="footer">

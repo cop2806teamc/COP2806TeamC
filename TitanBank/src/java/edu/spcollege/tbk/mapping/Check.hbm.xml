@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 4, 2014 9:26:50 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class catalog="titanbank" name="edu.spcollege.tbk.domain.check.Check" table="check">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="checkNumber" type="string">
+            <column name="check_number" not-null="true" />
+        </property>
+        <many-to-one class="edu.spcollege.tbk.domain.bankaccount.BankAccount" fetch="join" name="account">
+            <column name="bank_account_id" not-null="true"/>
+        </many-to-one>
+        <property name="routingNumber" type="string">
+            <column name="routing_number" not-null="true" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="10" not-null="true" />
+        </property>
+        <property name="payTo" type="string">
+            <column name="pay_to" not-null="true" />
+        </property>
+        <property name="amount" type="double">
+            <column name="amount" precision="12" not-null="true" />
+        </property>
+        <property name="status">
+            <column name="status" not-null="true"/>
+            <type name="org.hibernate.type.EnumType">
+              <param name="enumClass">edu.spcollege.tbk.domain.check.CheckStatus</param>
+              <param name="type">12</param>
+            </type>
+        </property>
+    </class>
+</hibernate-mapping>

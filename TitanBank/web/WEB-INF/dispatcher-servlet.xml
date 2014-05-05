@@ -27,6 +27,9 @@
                 <prop key="transfers.htm">transfersController</prop>
                 <prop key="transfersList.htm">transfersListController</prop>
                 <prop key="transferConfirm.htm">transferConfirmController</prop>
+                <prop key="checks.htm">checksController</prop>
+                <prop key="checkStopPaymentConfirm.htm">checkStopPaymentConfirmController</prop>
+                <prop key="checkOrderConfirm.htm">checkOrderConfirmController</prop>
             </props>
         </property>
     </bean>
@@ -70,4 +73,16 @@
     <bean name="transferConfirmController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="transferConfirm" />
+    
+    <bean name="checksController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="checks" />
+    
+    <bean name="checkStopPaymentConfirmController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="checkStopPaymentConfirm" />
+    
+    <bean name="checkOrderConfirmController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="checkOrderConfirm" />
 </beans>

@@ -14,23 +14,21 @@ import java.util.Date;
  *
  * @author Zhou
  */
-public class Check {
+public class Check implements java.io.Serializable {
     private Long id;
     private String checkNumber;
-    private String RoutingNumber;
     private BankAccount account;
-    private Customer customer;
+    private String routingNumber;
     private Date date;
     private String payTo;
     private double amount;
     private CheckStatus status;
     
     // Constructor
-    public Check(String checkNumber, String RoutingNumber, BankAccount account, Customer customer, Date date, String payTo, double amount, CheckStatus status) {
+    public Check(String checkNumber, BankAccount account, String routingNumber, Date date, String payTo, double amount, CheckStatus status) {
         this.checkNumber = checkNumber;
-        this.RoutingNumber = RoutingNumber;
         this.account = account;
-        this.customer = customer;
+        this.routingNumber = routingNumber;
         this.date = date;
         this.payTo = payTo;
         this.amount = amount;
@@ -47,15 +45,11 @@ public class Check {
     }
 
     public String getRoutingNumber() {
-        return this.RoutingNumber;
+        return this.routingNumber;
     }
 
     public BankAccount getAccount() {
         return this.account;
-    }
-
-    public Customer getCustomer() {
-        return this.customer;
     }
 
     public Date getDate() {
@@ -100,18 +94,14 @@ public class Check {
         this.checkNumber = checkNumber;
     }
 
-    private void setRoutingNumber(String RoutingNumber) {
-        this.RoutingNumber = RoutingNumber;
+    private void setRoutingNumber(String routingNumber) {
+        this.routingNumber = routingNumber;
     }
 
     private void setAccount(BankAccount account) {
         this.account = account;
     }
 
-    private void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-    
     private void setDate(Date date) {
         this.date = date;
     }

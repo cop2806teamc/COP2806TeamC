@@ -1,3 +1,8 @@
+/*******************/
+/****** TABLE ******/
+/*******************/
+
+/****** customer table ******/
 CREATE TABLE customer (
     id int unsigned  NOT NULL,
     first_name varchar(255)  NOT NULL,
@@ -10,7 +15,8 @@ CREATE TABLE customer (
 );
 
 
-CREATE TABLE user (
+/****** user table ******/
+CREATE TABLE `user` (
     id int unsigned  NOT NULL,
     username varchar(255)  NOT NULL UNIQUE,
     password varchar(255)  NOT NULL,
@@ -22,6 +28,7 @@ ALTER TABLE user ADD CONSTRAINT user_customer FOREIGN KEY user_customer (custome
 REFERENCES customer (id);
 
 
+/****** bank account table ******/
 CREATE TABLE bank_account (
     id int unsigned  NOT NULL,
 	account_number varchar(255)  NOT NULL UNIQUE,
@@ -32,6 +39,7 @@ CREATE TABLE bank_account (
 );
 
 
+/****** customer <-> bank account table ******/
 CREATE TABLE customer_accounts (
     customer_id int unsigned NOT NULL,
 	bank_account_id int unsigned NOT NULL,
@@ -45,6 +53,7 @@ ALTER TABLE customer_accounts ADD CONSTRAINT customer_account FOREIGN KEY custom
 REFERENCES bank_account (id);
 
 
+/****** transfer request table ******/
 CREATE TABLE transfer_request (
     id int unsigned  NOT NULL,
 	from_account_id int unsigned  NOT NULL,
@@ -63,8 +72,44 @@ ALTER TABLE transfer_request ADD CONSTRAINT to_bank_account FOREIGN KEY to_bank_
 REFERENCES bank_account (id);
 
 
+/****** check table ******/
+CREATE TABLE `check` (
+    id int unsigned  NOT NULL,
+	check_number varchar(255)  NOT NULL,
+	bank_account_id int unsigned  NOT NULL,
+	routing_number varchar(255)  NOT NULL,
+	`date` date  NOT NULL,
+	pay_to varchar(255)  NOT NULL,
+	amount decimal(12,2)  NOT NULL,
+	status varchar(255)  NOT NULL,
+    CONSTRAINT check_pk PRIMARY KEY (id)
+);
+
+ALTER TABLE `check` ADD CONSTRAINT check_account FOREIGN KEY check_account (bank_account_id)
+REFERENCES bank_account (id);
 
 
+/****** check order table ******/
+CREATE TABLE check_order (
+    id int unsigned  NOT NULL,
+	customer_id int unsigned  NOT NULL,
+	bank_account_id int unsigned  NOT NULL,
+    CONSTRAINT check_order_pk PRIMARY KEY (id)
+);
+
+ALTER TABLE check_order ADD CONSTRAINT check_order_customer FOREIGN KEY check_order_customer (customer_id)
+REFERENCES customer (id);
+
+ALTER TABLE check_order ADD CONSTRAINT check_order_account FOREIGN KEY check_order_account (bank_account_id)
+REFERENCES bank_account (id);
+
+
+
+/******************/
+/****** DATA ******/
+/******************/
+
+/****** customer data ******/
 INSERT INTO `titanbank`.`customer`
 (`id`, `first_name`, `last_name`, `date_of_birth`, `address`, `email`, `phone`)
 VALUES
@@ -99,6 +144,7 @@ VALUES
 "(727)323-4567");
 
 
+/****** user data ******/
 INSERT INTO `titanbank`.`user`
 (`id`, `username`, `password`, `customer_id`)
 VALUES
@@ -116,6 +162,7 @@ VALUES
 2);
 
 
+/****** bank account data ******/
 INSERT INTO `titanbank`.`bank_account`
 (`id`, `account_number`, `account_name`, `balance`, `account_type`)
 VALUES
@@ -153,6 +200,7 @@ VALUES
 "SAVING");
 
 
+/****** customer <-> bank account data ******/
 INSERT INTO `titanbank`.`customer_accounts`
 (`customer_id`, `bank_account_id`)
 VALUES
@@ -178,6 +226,8 @@ INSERT INTO `titanbank`.`customer_accounts`
 VALUES
 (3, 3);
 
+
+/****** transfer request data ******/
 INSERT INTO `titanbank`.`transfer_request`
 (`id`, `from_account_id`, `to_account_id`, `amount`, `active_date`, `schedule_status`, `transfer_status`)
 VALUES
@@ -211,3 +261,125 @@ VALUES
 "2014-5-31",
 "FUTURE",
 "PENDING");
+
+
+/****** check data ******/
+INSERT INTO `titanbank`.`check`
+(`id`, `check_number`, `bank_account_id`, `routing_number`, `date`, `pay_to`, `amount`, `status`)
+VALUES
+(1,
+"001",
+1,
+"000000001",
+"2014-5-1",
+"Store A",
+100,
+"PAID");
+
+INSERT INTO `titanbank`.`check`
+(`id`, `check_number`, `bank_account_id`, `routing_number`, `date`, `pay_to`, `amount`, `status`)
+VALUES
+(2,
+"001",
+2,
+"000000001",
+"2014-5-2",
+"Store B",
+200,
+"PENDING");
+
+INSERT INTO `titanbank`.`check`
+(`id`, `check_number`, `bank_account_id`, `routing_number`, `date`, `pay_to`, `amount`, `status`)
+VALUES
+(3,
+"001",
+3,
+"000000002",
+"2014-5-1",
+"Store A",
+100,
+"PAID");
+
+INSERT INTO `titanbank`.`check`
+(`id`, `check_number`, `bank_account_id`, `routing_number`, `date`, `pay_to`, `amount`, `status`)
+VALUES
+(4,
+"002",
+3,
+"000000002",
+"2014-5-2",
+"Store B",
+200,
+"PENDING");
+
+INSERT INTO `titanbank`.`check`
+(`id`, `check_number`, `bank_account_id`, `routing_number`, `date`, `pay_to`, `amount`, `status`)
+VALUES
+(5,
+"003",
+3,
+"000000002",
+"2014-5-3",
+"Store C",
+300,
+"PENDING");
+
+INSERT INTO `titanbank`.`check`
+(`id`, `check_number`, `bank_account_id`, `routing_number`, `date`, `pay_to`, `amount`, `status`)
+VALUES
+(6,
+"004",
+3,
+"000000002",
+"2014-5-4",
+"Store D",
+400,
+"PAID");
+
+INSERT INTO `titanbank`.`check`
+(`id`, `check_number`, `bank_account_id`, `routing_number`, `date`, `pay_to`, `amount`, `status`)
+VALUES
+(7,
+"001",
+4,
+"000000002",
+"2014-5-1",
+"Store A",
+100,
+"PENDING");
+
+INSERT INTO `titanbank`.`check`
+(`id`, `check_number`, `bank_account_id`, `routing_number`, `date`, `pay_to`, `amount`, `status`)
+VALUES
+(8,
+"002",
+4,
+"000000002",
+"2014-5-2",
+"Store B",
+200,
+"PENDING");
+
+INSERT INTO `titanbank`.`check`
+(`id`, `check_number`, `bank_account_id`, `routing_number`, `date`, `pay_to`, `amount`, `status`)
+VALUES
+(9,
+"003",
+4,
+"000000002",
+"2014-5-3",
+"Store C",
+300,
+"STOPPED");
+
+INSERT INTO `titanbank`.`check`
+(`id`, `check_number`, `bank_account_id`, `routing_number`, `date`, `pay_to`, `amount`, `status`)
+VALUES
+(10,
+"004",
+4,
+"000000002",
+"2014-5-4",
+"Store D",
+400,
+"RETURNED");

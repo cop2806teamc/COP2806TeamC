@@ -61,7 +61,7 @@ public class TransferRepository implements ITransferRepository{
         List<TransferRequest> allRequests = this.findAll();
         List<TransferRequest> results = new ArrayList<>();
         
-        for(TransferRequest tr : allRequests) {
+        for (TransferRequest tr : allRequests) {
             if (tr.getFromAccount().isCustomer(customer) ||
                     tr.getToAccount().isCustomer(customer))
             {

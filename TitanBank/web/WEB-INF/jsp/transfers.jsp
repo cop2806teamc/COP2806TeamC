@@ -116,7 +116,7 @@
                     </div>
                     <div>
                         <label for="activeDate">Active Date: </label>
-                        <input type="text" name="activeDate" id="activeDate" required="required">
+                        <input type="date" name="activeDate" id="activeDate" required="required">
                     </div>
                     <div>
                         <label for="submit"></label>

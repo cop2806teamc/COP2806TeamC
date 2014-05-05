@@ -23,7 +23,7 @@
     
     <body>
         <jsp:include page="stdnav.jsp" />
-        <h2>Your transfer has been confirmed</h2>
+        <h2>Your transfer request has been confirmed</h2>
         <div class="main">
             <jsp:include page="transfersList.jsp" />
         </div> <!-- class="main" -->

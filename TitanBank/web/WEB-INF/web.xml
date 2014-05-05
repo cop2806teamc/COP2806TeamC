@@ -28,6 +28,22 @@
         <servlet-name>TransferConfirmServlet</servlet-name>
         <servlet-class>edu.spcollege.tbk.controller.TransferConfirmServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChecksServlet</servlet-name>
+        <servlet-class>edu.spcollege.tbk.controller.ChecksServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChecksSearchServlet</servlet-name>
+        <servlet-class>edu.spcollege.tbk.controller.ChecksSearchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckStopPaymentServlet</servlet-name>
+        <servlet-class>edu.spcollege.tbk.controller.CheckStopPaymentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckOrderServlet</servlet-name>
+        <servlet-class>edu.spcollege.tbk.controller.CheckOrderServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -47,6 +63,22 @@
     <servlet-mapping>
         <servlet-name>TransferConfirmServlet</servlet-name>
         <url-pattern>/transferConfirm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChecksServlet</servlet-name>
+        <url-pattern>/checks</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChecksSearchServlet</servlet-name>
+        <url-pattern>/checksSearch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckStopPaymentServlet</servlet-name>
+        <url-pattern>/checkStopPayment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckOrderServlet</servlet-name>
+        <url-pattern>/checkOrder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
