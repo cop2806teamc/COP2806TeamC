@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 27, 2014 4:22:13 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+  <class catalog="titanbank" name="edu.spcollege.tbk.domain.Customer" table="customer">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="increment"/>
+    </id>
+    <property name="firstName" type="string">
+      <column name="first_name" not-null="true"/>
+    </property>
+    <property name="lastName" type="string">
+      <column name="last_name" not-null="true"/>
+    </property>
+    <property name="dateOfBirth" type="date">
+      <column length="10" name="date_of_birth" not-null="true"/>
+    </property>
+    <property name="address" type="string">
+      <column name="address"/>
+    </property>
+    <property name="email" type="string">
+      <column name="email"/>
+    </property>
+    <property name="phone" type="string">
+      <column length="32" name="phone"/>
+    </property>
+  </class>
+</hibernate-mapping>

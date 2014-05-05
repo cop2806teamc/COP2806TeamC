@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 27, 2014 4:22:13 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+  <class catalog="titanbank" name="edu.spcollege.tbk.domain.transfer.TransferRequest" table="transfer_request">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="increment"/>
+    </id>
+    <many-to-one class="edu.spcollege.tbk.domain.bankaccount.BankAccount" fetch="join" name="fromAccount">
+      <column name="from_account_id" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="edu.spcollege.tbk.domain.bankaccount.BankAccount" fetch="join" name="toAccount">
+      <column name="to_account_id" not-null="true"/>
+    </many-to-one>
+    <property name="amount" type="double">
+      <column name="amount" not-null="true" precision="12"/>
+    </property>
+    <property name="activeDate" type="date">
+      <column length="10" name="active_date" not-null="true"/>
+    </property>
+    <property name="scheduleStatus">
+      <column name="schedule_status" not-null="true"/>
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">edu.spcollege.tbk.domain.transfer.ScheduleStatus</param>
+        <param name="type">12</param>
+      </type>
+    </property>
+    <property name="transferStatus">
+      <column name="transfer_status" not-null="true"/>
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">edu.spcollege.tbk.domain.transfer.TransferStatus</param>
+        <param name="type">12</param>
+      </type>
+    </property>
+  </class>
+</hibernate-mapping>

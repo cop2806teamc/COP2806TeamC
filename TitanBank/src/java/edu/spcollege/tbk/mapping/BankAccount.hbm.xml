@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 27, 2014 4:22:13 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+  <class catalog="titanbank" name="edu.spcollege.tbk.domain.bankaccount.BankAccount" table="bank_account">
+    <id name="id" type="long">
+      <column name="id"/>
+      <generator class="increment"/>
+    </id>
+    <property name="accountNumber" type="string" unique="true">
+      <column name="account_number" not-null="true"/>
+    </property>
+    <property name="accountName" type="string">
+      <column name="account_name" not-null="true"/>
+    </property>
+    <property name="balance" type="double">
+      <column name="balance" not-null="true" precision="12"/>
+    </property>
+    <property name="accountType">
+      <column name="account_type" not-null="true"/>
+      <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">edu.spcollege.tbk.domain.bankaccount.AccountType</param>
+        <param name="type">12</param>
+      </type>
+    </property>
+    <set fetch="join" inverse="false" lazy="false" name="customers" table="customer_accounts">
+      <key>
+        <column name="bank_account_id" not-null="true"/>
+      </key>
+      <many-to-many entity-name="edu.spcollege.tbk.domain.Customer">
+        <column name="customer_id" not-null="true"/>
+      </many-to-many>
+    </set>
+  </class>
+</hibernate-mapping>
