@@ -8,6 +8,7 @@ package edu.spcollege.tbk.domain.check;
 
 import edu.spcollege.tbk.domain.Customer;
 import edu.spcollege.tbk.domain.bankaccount.BankAccount;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 /**
@@ -80,6 +81,11 @@ public class Check implements java.io.Serializable {
         }
         this.status = CheckStatus.STOPPED;
         return true;
+    }
+    
+    public String getAmountString() {
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        return "$" + df.format(this.amount);
     }
     
     // Needed by Hibernate

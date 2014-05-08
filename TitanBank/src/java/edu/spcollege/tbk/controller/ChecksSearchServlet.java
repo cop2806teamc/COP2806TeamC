@@ -11,6 +11,7 @@ import edu.spcollege.tbk.domain.bankaccount.BankAccount;
 import edu.spcollege.tbk.domain.bankaccount.BankAccountRepository;
 import edu.spcollege.tbk.domain.check.Check;
 import edu.spcollege.tbk.domain.check.CheckRepository;
+import edu.spcollege.tbk.domain.check.CheckStatus;
 import edu.spcollege.tbk.domain.user.UserRepository;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -52,8 +53,20 @@ public class ChecksSearchServlet extends HttpServlet {
         // Checks
         String checkNumber = request.getParameter("checkNumber");
         String accountNumber = request.getParameter("bankAccount");
+        String checkStatusStr = request.getParameter("checkStatus");
+        CheckStatus checkStatus = null;
+        if (CheckStatus.PAID.toString().equals(checkStatusStr)) {
+            checkStatus = CheckStatus.PAID;
+        } else if (CheckStatus.PENDING.toString().equals(checkStatusStr)) {
+            checkStatus = CheckStatus.PENDING;
+        } else if (CheckStatus.RETURNED.toString().equals(checkStatusStr)) {
+            checkStatus = CheckStatus.RETURNED;
+        } else if (CheckStatus.STOPPED.toString().equals(checkStatusStr)) {
+            checkStatus = CheckStatus.STOPPED;
+        }
+        
         CheckRepository checkRepo = new CheckRepository();
-        List<Check> checks = checkRepo.findByNumber(customer, accountNumber, checkNumber);
+        List<Check> checks = checkRepo.find(customer, accountNumber, checkNumber, checkStatus);
 
         request.setAttribute("bankAccounts", bankAccounts);
         request.setAttribute("checks", checks);

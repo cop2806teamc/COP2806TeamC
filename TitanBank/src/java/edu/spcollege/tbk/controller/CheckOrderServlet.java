@@ -56,6 +56,7 @@ public class CheckOrderServlet extends HttpServlet {
         CheckOrderRepository checkOrderRepo = new CheckOrderRepository();
         checkOrderRepo.save(checkOrder);
 
+        request.setAttribute("orderAccount", account);
         // Then display
         String url = "/checkOrderConfirm.htm";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);

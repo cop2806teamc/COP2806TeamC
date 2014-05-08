@@ -85,7 +85,7 @@ public class CheckRepository implements ICheckRepository{
     }
     
     @Override
-    public List<Check> findByNumber(Customer customer, String accountNumber, String checkNumber) {
+    public List<Check> find(Customer customer, String accountNumber, String checkNumber, CheckStatus checkStatus) {
         List<Check> allCustomerChecks = this.findByCustomer(customer);
         List<Check> results = new ArrayList<>();
         
@@ -97,6 +97,11 @@ public class CheckRepository implements ICheckRepository{
             }
             if (checkNumber != null && checkNumber.length() > 0) {
                 if (!ck.getCheckNumber().equals(checkNumber)) {
+                    continue;
+                }
+            }
+            if (checkStatus != null) {
+                if (!ck.getStatus().equals(checkStatus)) {
                     continue;
                 }
             }

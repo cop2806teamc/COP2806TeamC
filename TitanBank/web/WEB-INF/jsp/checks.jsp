@@ -80,6 +80,18 @@
 %>
                             </select>
                         </div>
+                        <div>
+                            <label for="checkStatus">Check Status: </label>
+                            <select name="checkStatus" id="checkStatus">
+                                <option></option>
+<%
+                                out.println("<option value=\"" + CheckStatus.PAID + "\">" + CheckStatus.PAID.toString()  +  "</option>");
+                                out.println("<option value=\"" + CheckStatus.PENDING + "\">" + CheckStatus.PENDING.toString()  +  "</option>");
+                                out.println("<option value=\"" + CheckStatus.RETURNED + "\">" + CheckStatus.RETURNED.toString()  +  "</option>");
+                                out.println("<option value=\"" + CheckStatus.STOPPED + "\">" + CheckStatus.STOPPED.toString()  +  "</option>");
+%>
+                            </select>
+                        </div>
                     </div>
                     <div>
                         <label for="submit"></label>
@@ -108,9 +120,9 @@
                     info += "<table border=\"1\"><tr><th>Number</th><th>Check Account</th><th>Date</th><th>Pay To</th><th>Amount</th><th>Check Status</th></tr>";
                     info += "<tr><td>" + check.getCheckNumber().toString() + "</td>";
                     info += "<td>" + check.getAccount().getAccountName() + "</td>";
-                    info += "<td>" + check.getDate().toString() + "</td>";
+                    info += "<td>" + (check.getDate().getMonth()+1) + "/" + check.getDate().getDate() + "/" + (check.getDate().getYear()+1900) + "</td>";
                     info += "<td>" + check.getPayTo() + "</td>";
-                    info += "<td>" + check.getAmount() + "</td>";
+                    info += "<td>" + check.getAmountString() + "</td>";
                     info += "<td>" + check.getStatus().toString()+ "</td>";
                     info += "</tr></table><br>";
                 }

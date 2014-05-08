@@ -17,7 +17,7 @@ public interface ICheckRepository {
     void save (Check check);
     List<Check> findAll();
     List<Check> findByCustomer(Customer customer);
-    List<Check> findByNumber(Customer customer, String accountNumber, String checkNumber);
+    List<Check> find(Customer customer, String accountNumber, String checkNumber, CheckStatus checkStatus);
     Check findById(Long id);
 //    Check findByAccountNumber(String accountNumber);
 }

@@ -14,6 +14,7 @@ import edu.spcollege.tbk.domain.check.CheckRepository;
 import edu.spcollege.tbk.domain.user.UserRepository;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -50,6 +51,8 @@ public class CheckStopPaymentServlet extends HttpServlet {
 //        List<BankAccount> bankAccounts = bankAcctRepo.findByCustomer(customer);
         
         // Checks
+        List<Check> stoppedChecks = new ArrayList<Check>();
+        
         CheckRepository checkRepo = new CheckRepository();
         
         String[] pendingCheck = request.getParameterValues("pendingCheck");
@@ -59,11 +62,11 @@ public class CheckStopPaymentServlet extends HttpServlet {
             if (ck != null) {
                 ck.stopPayment();
                 checkRepo.save(ck);
+                stoppedChecks.add(ck);
             }
         }
 
-        List<Check> checks = checkRepo.findByCustomer(customer);
-        
+        request.setAttribute("stoppedChecks", stoppedChecks);
 //        request.setAttribute("bankAccounts", bankAccounts);
 //        request.setAttribute("checks", checks);
         // Then display accounts information

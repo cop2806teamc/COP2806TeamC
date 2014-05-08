@@ -4,6 +4,12 @@
     Author     : Zhou
 --%>
 
+<%@page import="edu.spcollege.tbk.domain.bankaccount.*"%>
+<%! BankAccount orderAccount; %>
+<%
+    orderAccount = (BankAccount) request.getAttribute("orderAccount");
+%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +20,7 @@
     
     <body>
         <jsp:include page="stdnav.jsp" />
-        <h2>Your check order request has been confirmed</h2>
+        <h2>Your check order request for <%=orderAccount.getAccountName()%> has been confirmed.</h2>
         <div class="main">
         </div> <!-- class="main" -->
 
